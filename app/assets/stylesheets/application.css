@@ -1,10 +1,25 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+/* Tokyo Night: Omarchy's default theme (basecamp/omarchy themes/tokyo-night/colors.toml). */
+:root {
+  --bg: #1a1b26; --bg-dark: #13141c; --fg: #a9b1d6; --fg-bright: #c0caf5; --muted: #565f89;
+  --accent: #7aa2f7; --selection: #292e42;
+  --platinum: #c0caf5; --gold: #e0af68; --silver: #a9b1d6; --bronze: #eb927b; --borked: #f7768e;
+  --verified: #9ece6a; --predicted: #7aa2f7; --unverified: #565f89; --disputed: #ad8ee6;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); color: var(--fg); }
+body { margin: 0; font: 15px/1.6 ui-monospace, "JetBrainsMono Nerd Font", "JetBrains Mono", Menlo, monospace; }
+::selection { background: var(--selection); }
+.frame { max-width: 72ch; margin: 0 auto; padding: 2rem 1rem 4rem; }
+.bar { display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap; border-bottom: 1px solid var(--selection); padding-bottom: .5rem; }
+.brand { color: var(--accent); font-weight: 700; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.prompt { display: flex; gap: .75ch; align-items: center; margin-top: 2rem; padding: .6rem 1ch; background: var(--bg-dark); border: 1px solid var(--selection); }
+.prompt label { color: var(--verified); }
+.prompt input { flex: 1; background: none; border: 0; color: var(--fg-bright); font: inherit; outline: none; }
+.counters { display: flex; flex-wrap: wrap; gap: .5rem 2ch; margin: 1.5rem 0; color: var(--fg-bright); }
+.box { overflow-x: auto; margin: 1.5rem 0; color: var(--fg); font: inherit; line-height: 1.35; }
+.g-verified { color: var(--verified); } .g-predicted { color: var(--predicted); }
+.g-unverified { color: var(--unverified); } .g-disputed { color: var(--disputed); }
+.t-platinum { color: var(--platinum); } .t-gold { color: var(--gold); } .t-silver { color: var(--silver); }
+.t-bronze { color: var(--bronze); } .t-borked { color: var(--borked); }

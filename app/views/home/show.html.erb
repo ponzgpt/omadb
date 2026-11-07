@@ -1,0 +1,38 @@
+<% content_for :title, "OmaDB — does Omarchy run on it?" %>
+<main class="frame">
+  <header class="bar">
+    <span class="brand">omadb</span>
+    <span class="muted">the hardware list Omarchy never had</span>
+  </header>
+
+  <form class="prompt" action="/" role="search">
+    <label for="q">❯</label>
+    <input id="q" name="q" placeholder="thinkpad t14" autocomplete="off" autofocus disabled>
+  </form>
+  <p class="muted small">Search opens when the first reports land. Press nothing yet.</p>
+
+  <section class="counters" aria-label="Catalog">
+    <div><b class="g-verified">●</b> <%= @counts.fetch("verified", 0) %> verified</div>
+    <div><b class="g-predicted">◐</b> <%= @counts.fetch("predicted", 0) %> predicted</div>
+    <div><b class="g-unverified">○</b> <%= @counts.fetch("unverified", 0) %> unverified</div>
+    <div><b class="g-disputed">~</b> <%= @counts.fetch("disputed", 0) %> disputed</div>
+  </section>
+
+  <pre class="box" aria-label="Tiers">┌─ tiers ────────────────────────────────────────────────┐
+│ <span class="t-platinum">● platinum</span>  out of the box. nothing to do.             │
+│ <span class="t-gold">● gold    </span>  one documented tweak, linked.              │
+│ <span class="t-silver">● silver  </span>  daily-drivable. something minor is broken. │
+│ <span class="t-bronze">● bronze  </span>  a core feature needs a hack.               │
+│ <span class="t-borked">● borked  </span>  won't install or boot.                     │
+└────────────────────────────────────────────────────────┘</pre>
+
+  <p>Every machine gets a page before anyone reports it. <b class="g-predicted">◐</b> predictions come from the
+    parts inside it (wifi chip, audio codec, GPU) and the machines those parts already work on, never from
+    "it looks like a ThinkPad". A prediction tops out at gold. Platinum takes a human.</p>
+
+  <pre class="box" aria-label="Reporter">┌─ report your machine (soon) ────────────────────┐
+│ $ curl -fsSL omadb.technoir.cloud/report | bash │
+└─────────────────────────────────────────────────┘</pre>
+  <p class="muted small">Shows you the script and the payload, asks y/N, needs no account. Works from the live ISO,
+    so machines that never made it past install count too.</p>
+</main>
