@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Run a command in the omadb-dev container on hoid against a synced copy of this tree.
+# ponytail: exists only because this Mac has no Ruby 4 or Docker; drop it once either does.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+DEST=/tmp/omadb-dev
+rsync -a --delete --exclude .git --exclude 'log/*' --exclude 'tmp/*' --exclude 'storage/*' ./ "hoid:$DEST/"
+ssh hoid "docker run --rm -e CI -v omadb-bundle:/bundle -v $DEST:/app -w /app omadb-dev bash -lc $(printf '%q' "bundle check >/dev/null || bundle install --quiet; $*")"
