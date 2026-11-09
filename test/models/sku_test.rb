@@ -35,8 +35,8 @@ class SkuTest < ActiveSupport::TestCase
   end
 
   test "latest version compares numerically, not as text" do
-    @t14.reports.create!(machine_hash: "a", omarchy_version: "9.1")
-    @t14.reports.create!(machine_hash: "b", omarchy_version: "10.0")
+    @t14.reports.create!(machine_hash: "a" * 32, omarchy_version: "9.1")
+    @t14.reports.create!(machine_hash: "b" * 32, omarchy_version: "10.0")
     assert_equal "10.0", Report.latest_version
   end
 end

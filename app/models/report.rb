@@ -6,6 +6,7 @@ class Report < ApplicationRecord
   has_many :components, through: :report_components
 
   validates :source, inclusion: { in: %w[installed live_iso] }
+  validates :machine_hash, format: { with: /\A[0-9a-f]{32}\z/ }
 
   # ponytail: newest version seen in reports; swap for the Omarchy release feed once we track it.
   def self.latest_version

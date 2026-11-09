@@ -1,0 +1,27 @@
+<% content_for :title, "#{@machine.vendor.name} #{@machine.name} on Omarchy — OmaDB" %>
+<main class="frame">
+  <header class="bar"><a class="brand" href="/">omadb</a><span class="muted">❯ <%= @machine.vendor.name.downcase %> <%= @machine.name.downcase %></span></header>
+
+  <h1><%= @machine.vendor.name %> <%= @machine.name %></h1>
+  <p class="tierline">
+    <%= tier_badge(@rating.tier) %>
+    <span class="muted"><%= @rating.tier&.label %> · <%= pluralize(@rating.total_reports, "report") %> · confidence <%= @rating.confidence %>
+      <% if (latest = @rating.entries.map(&:version).max_by { [ _1.major, _1.minor ] }) %>· Omarchy <%= latest.line %><% end %></span>
+  </p>
+
+  <% if @rating.disputed? %>
+    <p class="g-disputed">~ Disputed: reports disagree on <%= @rating.disputes.keys.map(&:humanize).to_sentence.downcase %>.</p>
+  <% end %>
+
+  <pre class="box" aria-label="Features"><% Feature::ALL.each do |f| %><%= f.humanize.downcase.ljust(14) %> <%= status_cell(@rating.median_statuses[f]) %><%= " ← depends on your #{@rating.variant_splits[f][:kind].humanize.downcase} module" if @rating.variant_splits[f] %>
+<% end %></pre>
+
+  <h2>SKUs</h2>
+  <ul class="plain">
+    <% @machine.skus.each do |sku| %>
+      <li><%= layer_glyph(sku.status_layer) %> <%= sku.code %> <span class="muted"><%= pluralize(sku.reports.size, "report") %></span></li>
+    <% end %>
+  </ul>
+
+  <p class="muted small">Own one? <code>curl -fsSL <%= request.host %>/report | bash</code> · <a href="<%= machine_path(@machine, format: :json) %>">json</a></p>
+</main>

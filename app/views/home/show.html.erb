@@ -18,6 +18,13 @@
     <div><b class="g-disputed">~</b> <%= @counts.fetch("disputed", 0) %> disputed</div>
   </section>
 
+  <% if @recent.any? %>
+    <h2>Latest reports</h2>
+    <ul class="plain">
+      <% @recent.each do |m| %><li><%= tier_badge(m.rating.tier) %> <%= link_to "#{m.vendor.name} #{m.name}", m %></li><% end %>
+    </ul>
+  <% end %>
+
   <pre class="box" aria-label="Tiers">┌─ tiers ────────────────────────────────────────────────┐
 │ <span class="t-platinum">● platinum</span>  out of the box. nothing to do.             │
 │ <span class="t-gold">● gold    </span>  one documented tweak, linked.              │
@@ -30,7 +37,7 @@
     parts inside it (wifi chip, audio codec, GPU) and the machines those parts already work on, never from
     "it looks like a ThinkPad". A prediction tops out at gold. Platinum takes a human.</p>
 
-  <pre class="box" aria-label="Reporter">┌─ report your machine (soon) ────────────────────┐
+  <pre class="box" aria-label="Reporter">┌─ report your machine ───────────────────────────┐
 │ $ curl -fsSL omadb.technoir.cloud/report | bash │
 └─────────────────────────────────────────────────┘</pre>
   <p class="muted small">Shows you the script and the payload, asks y/N, needs no account. Works from the live ISO,

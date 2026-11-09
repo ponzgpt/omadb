@@ -3,7 +3,7 @@ class DmiAlias < ApplicationRecord
   belongs_to :sku
   before_validation { self.normalized = self.class.normalize(raw) }
 
-  JUNK = /\A(to be filled by o ?e ?m|default string|system product name|not applicable|none|0+|x+)\z/
+  JUNK = /\A(to be filled by o ?e ?m|default string|system product name|system manufacturer|system version|oem|not applicable|none|0+|x+)\z/
 
   def self.normalize(raw)
     s = raw.to_s.downcase.gsub(/[^a-z0-9]+/, " ").squish

@@ -23,3 +23,9 @@ body { margin: 0; font: 15px/1.6 ui-monospace, "JetBrainsMono Nerd Font", "JetBr
 .g-unverified { color: var(--unverified); } .g-disputed { color: var(--disputed); }
 .t-platinum { color: var(--platinum); } .t-gold { color: var(--gold); } .t-silver { color: var(--silver); }
 .t-bronze { color: var(--bronze); } .t-borked { color: var(--borked); }
+a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+h1 { font-size: 1.4rem; color: var(--fg-bright); margin: 2rem 0 .25rem; } h2 { font-size: 1rem; color: var(--fg-bright); margin-top: 2rem; }
+code { color: var(--fg-bright); }
+.plain { list-style: none; padding: 0; }
+.s-works { color: var(--verified); } .s-works_after_fix, .s-patched { color: var(--gold); }
+.s-partial { color: var(--bronze); } .s-broken { color: var(--borked); } .s-untested { color: var(--muted); }

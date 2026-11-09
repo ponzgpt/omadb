@@ -11,7 +11,7 @@ The ProtonDB of Omarchy hardware: tiers per machine, per-feature status, fixes, 
 2. Predictions are per component ID, never "similar model ⇒ works": vendors swap wifi/audio modules inside one SKU.
 3. A prediction is capped at Gold. Only a human report on that exact SKU earns Platinum.
 4. Tiers are derived from feature statuses, never picked by a user.
-5. Reports never carry serials, MACs or hostnames; machine-id is hashed client-side.
+5. Reports never carry serials, MACs or hostnames; machine-id is hashed client-side. `test/integration/reporter_test.rb` guards it.
 6. No third-party dataset is imported before Javier approves its license. Never scrape omahcl.com.
 7. Ask Javier before choosing the license, importing data, or publishing beyond this repo and site.
 8. Default theme is Omarchy's own default (Tokyo Night, per `install/user/theme.sh` upstream); re-check on theme work.
